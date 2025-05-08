@@ -39,6 +39,13 @@ export class IdeasController {
     return this.ideasService.getUserIdeas(userId);
   }
 
+  @Get('admin/all')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
+  async getAllIdeas() {
+    return this.ideasService.getAllIdeas();
+  }
+
   // Get all public (approved) ideas
   @Get('/public')
   async getPublicIdeas() {

@@ -55,6 +55,12 @@ export class IdeasService {
       order: { createdAt: 'DESC' },
     });
   }
+  async getAllIdeas(): Promise<Idea[]> {
+    return this.ideaRepo.find({
+      relations: ['user'],
+      order: { createdAt: 'DESC' },
+    });
+  }
 
   async approveIdea(id: number): Promise<Idea> {
     const idea = await this.ideaRepo.findOne({ where: { id } });
